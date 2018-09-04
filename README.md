@@ -22,7 +22,7 @@ wt -p 8888
 
 ## Usage
 
-URI is http://localhost:{port}/?wt={duration string}
+URI is `http://localhost:{port}/?wt={duration string}`
 
 ### Example
 
