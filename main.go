@@ -14,7 +14,8 @@ var content = `<html>
 <title>Waited %s</title>
 </head>
 <body>
-Hello world!
+Hello world!<br/>
+Waited %s.<br/>
 </body>
 </html>
 `
