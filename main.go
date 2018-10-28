@@ -22,7 +22,9 @@ Waited %s.<br/>
 
 func main() {
 	var port int
+	var tls bool
 	flag.IntVar(&port, "p", 12345, "Port number.")
+	flag.BoolVar(&tls, "tls", false, "Serve TLS.")
 	flag.Parse()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -36,7 +38,11 @@ func main() {
 
 		time.Sleep(d)
 
-		fmt.Fprintf(w, content, d)
+		fmt.Fprintf(w, content, d, d)
 	})
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
+	if tls {
+		log.Fatal(http.ListenAndServeTLS(":"+strconv.Itoa(port), "cert.pem", "key.pem", nil))
+	} else {
+		log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
+	}
 }
